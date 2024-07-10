@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+let cors = require("cors");
+
+app.use(cors());
 
 let cart = [
   { productId: 1, name: "Laptop", price: 50000, quantity: 1 },
@@ -66,7 +69,7 @@ app.get("/cart", (req, res) => {
 function caluclateTotalQuantity(cart) {
   let totalQuantity = 0;
   for (let i = 0; i < cart.length; i++) {
-    totalQuantity = totalQuantity + 1;
+    totalQuantity = totalQuantity + cart[i].quantity;
   }
   return totalQuantity;
 }
